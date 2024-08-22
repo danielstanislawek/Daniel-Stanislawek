@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Stanislawek, guitar</title>
+    <style>
+        .video-item {
+            display: inline; /* Keep the title inline */
+            margin-right: 5px; /* Space between title and artist */
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .song-entry {
+            display: block; /* Each song entry on a new line */
+            margin-bottom: 5px; /* Space between different songs */
+        }
+ #video-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        #video-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Daniel Stanislawek, guitar</h1>
+
+    <h2>
+dstanislawek@gmail.com</h2>
+    <div id="video-list">
+        
+ 
+       
+
+
+
+    <div id="video-popup">
+        <div id="video-container"></div>
+        <span id="close-popup">&times;</span>
+    </div>
+
+
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const videoItems = document.querySelectorAll('.video-item');
+  const videoPopup = document.getElementById('video-popup');
+  const videoContainer = document.getElementById('video-container');
+  const closePopup = document.getElementById('close-popup');
+
+  videoItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      const videoId = this.getAttribute('data-video-id');
+      openVideoPopup(videoId);
+    });
+  });
+
+  closePopup.addEventListener('click', closeVideoPopup);
+
+  function openVideoPopup(videoId) {
+    const iframe = document.createElement('iframe');
+    iframe.width = '560';
+    iframe.height = '315';
+    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+    iframe.frameBorder = '0';
+    iframe.allow = 'autoplay; encrypted-media';
+    iframe.allowFullscreen = true;
+
+    videoContainer.innerHTML = '';
+    videoContainer.appendChild(iframe);
+    videoPopup.style.display = 'block';
+  }
+
+  function closeVideoPopup() {
+    videoPopup.style.display = 'none';
+    videoContainer.innerHTML = '';
+  }
+
+  // Event listener for closing on overlay click
+  videoPopup.addEventListener('click', function(event) {
+    if (event.target === videoPopup) {
+      closeVideoPopup();
+    }
+  });
+});
+</script>
+<h2><a href="index.html">main</a></h2>
+<h2><a href="wedding.html">wedding</a></h2>
+<h2><a href="christmas.html">Christmas</a></h2>
+<h2><a href="about.html">about</a></h2>
+</body>
+</html>

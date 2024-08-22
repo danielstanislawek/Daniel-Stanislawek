@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Stanislawek, guitar</title>
+    <style>
+        .video-item {
+            display: inline; /* Keep the title inline */
+            margin-right: 5px; /* Space between title and artist */
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .song-entry {
+            display: block; /* Each song entry on a new line */
+            margin-bottom: 5px; /* Space between different songs */
+        }
+ #video-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        #video-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Daniel Stanislawek, guitar</h1>
+
+    <h2>wedding</h2>
+    <div id="video-list">
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="I5cPlQWbKFI">Canon in D</a> (Pachelbel)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="he-QkWkA9wo">Bridal Chorus</a> (Wagner)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="-qfTrPFoqdU">Wedding March</a> (Mendelssohn)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="zgS0WX0T-GI">A Thousand Years</a> (Christina Perri)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="bdjEyiN2YL8">At Last</a> (Etta James)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="bebRNpukHtQ">Rather Be</a> (Clean Bandit)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="wDQON7MuVtw">Chassidic Wedding Dance</a> (traditional)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="sKOnIOXV7Xk">Bless The Broken Road</a></div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="PCvMH8rJUwo">When You Say Nothing at All</a></div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="XLWW5do0KP4">A Whole New World</a> (Aladdin)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="bCS0PybxsA8">Love Me Do</a> (Beatles)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="eojRfAChyg8">Stand By Me</a> (Ben E. King)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="w1jZfoonZ9Y">Love Me Like You Do</a> (Ellie Goulding)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="5hpr3pbI-a4">Jesu, Joy of Man's Desiring</a> (Bach)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="DojiVZJFiXM">Hallelujah</a> (Leonard Cohen)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="aPDFnKUTD3A">Thinking Out Loud</a> (Ed Sheeran)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="HCzE0FHYZpI">Perfect</a> (Ed Sheeran)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="tKMY-5uLB0M">Perfect Day</a> (Lou Reed)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="RZC0dVC5S7w">Clair de Lune</a> (Debussy)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="yTar183yEi4">I Will</a> (Beatles)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="32V_v8qbwK8">Married Life</a> (from Up)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="wtmQXjtgfsU">Loure 1006a</a> (Bach)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="wLD4-satV2s">Gavotten en Rondeau</a> (Bach)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="_zeqzC6HQ0E">Minuets 1 & 2 1006a</a> (Bach)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="bz6tuI_sknw">Bouree 1006a</a> (Bach)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="q_zFcXpedWw">Gigue 1006a</a> (Bach)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="fzpH3FFaoL8">First Day of My Life</a> (Bright Eyes)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="eojRfAChyg8">Stand By Me</a> (Ben E. King)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="u3bGOjEMB00">Trumpet Tune</a> (Purcell)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="zUsxlceLevw">All Of Me</a> (John Legend)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="Gpdk3B67VqA">Ave Maria</a> (Bach)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="s3kCY7dp_FQ">I’m Yours</a> (Jason Mraz)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="-b66BxrGlD4">Marry Me</a> (Train)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="__opUD4WXpM">Marry You</a> (Bruno Mars)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="t0bp5C3d_EU">And I Love Her</a> (Beatles)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="12sGilnW2t8">Sunrise, Sunset</a> (Fiddler on the Roof)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="FTP5QWyez">Air on the G String</a> (Bach)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="qyVQbRFAlV8">When I’m Sixty Four</a> (Beatles)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="3PYDuMAxBlk">Funiculi, Funicula</a> (Luigi Denza)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="TJqOl2oslcU">Gymnopedie No. 1</a> (Satie)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="F5QZ0ZmGyGk">Amazing Grace</a> (trad)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="ZqNyAR0rXzY">Here Comes The Sun</a> (Beatles)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="i3rWcCu6yTg">Can’t Help Falling In Love</a> (Elvis)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="EaZ1YgVRHwE">The Prince of Denmark's March</a> (Trumpet Voluntary)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="pW5gdfBWiVc">Over the Rainbow</a> (The Wizard of Oz)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="qoopyO5Q3W4">One Hand One Heart</a> (West Side Story)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="4OAkt4pcO8M">My Cherie Amour</a> (Stevie Wonder)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="0e-5_Zw-wTQ">What a Wonderful World</a> (Louis Armstrong)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="rbuTO8NG6SE">Better Together</a> (Jack Johnson)</div>
+       <div class="song-entry"><a href="#" class="video-item" data-video-id="yhMQ8aAMixE">Part of Your World</a> (The Little Mermaid)</div>
+
+
+
+    <div id="video-popup">
+        <div id="video-container"></div>
+        <span id="close-popup">&times;</span>
+    </div>
+
+
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const videoItems = document.querySelectorAll('.video-item');
+  const videoPopup = document.getElementById('video-popup');
+  const videoContainer = document.getElementById('video-container');
+  const closePopup = document.getElementById('close-popup');
+
+  videoItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      const videoId = this.getAttribute('data-video-id');
+      openVideoPopup(videoId);
+    });
+  });
+
+  closePopup.addEventListener('click', closeVideoPopup);
+
+  function openVideoPopup(videoId) {
+    const iframe = document.createElement('iframe');
+    iframe.width = '560';
+    iframe.height = '315';
+    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+    iframe.frameBorder = '0';
+    iframe.allow = 'autoplay; encrypted-media';
+    iframe.allowFullscreen = true;
+
+    videoContainer.innerHTML = '';
+    videoContainer.appendChild(iframe);
+    videoPopup.style.display = 'block';
+  }
+
+  function closeVideoPopup() {
+    videoPopup.style.display = 'none';
+    videoContainer.innerHTML = '';
+  }
+
+  // Event listener for closing on overlay click
+  videoPopup.addEventListener('click', function(event) {
+    if (event.target === videoPopup) {
+      closeVideoPopup();
+    }
+  });
+});
+</script>
+<h2><a href="index.html">main</a></h2>
+<h2><a href="christmas.html">Christmas</a></h2>
+<h2><a href="about.html">about</a></h2>
+<h2><a href="contact.html">contact</a></h2>
+</body>
+</html>
