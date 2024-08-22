@@ -1,187 +1,113 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>HTML5/CSS3 Responsive Image Slider</title>
-    <style type="text/css">
-        #slider {
-            overflow: hidden;
-        }
-        #slider figure {
-            position: relative;
-            width: 500%;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
-            left: 0;
-            animation: 20s slider infinite;
+            padding: 20px;
+            background-color: #f0f0f0;
         }
-        #slider figure img {
-            float: left;
-            width: 20%;
+        h1 {
+            text-align: center;
+            color: #333;
         }
-
-        @keyframes slider {
-            0% { left: 0; }
-            20% { left: 0; }
-            25% { left: -100%; }
-            45% { left: -100%; }
-            50% { left: -200%; }
-            70% { left: -200%; }
-            75% { left: -300%; }
-            95% { left: -300%; }
-            100% { left: -400%; }
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 4px;
+        }
+        .column {
+            flex: 25%;
+            max-width: 25%;
+            padding: 0 4px;
+        }
+        .column img {
+            margin-top: 8px;
+            vertical-align: middle;
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 4px;
+            transition: opacity 0.3s;
+        }
+        @media screen and (max-width: 800px) {
+            .column {
+                flex: 50%;
+                max-width: 50%;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .column {
+                flex: 100%;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="slider">
-        <figure>
-<img src="img/300.png" alt="Image 300">
-<img src="img/301.png" alt="Image 301">
-<img src="img/302.png" alt="Image 302">
-<img src="img/303.png" alt="Image 303">
-<img src="img/304.png" alt="Image 304">
-<img src="img/305.png" alt="Image 305">
-<img src="img/306.png" alt="Image 306">
-<img src="img/307.png" alt="Image 307">
-<img src="img/308.png" alt="Image 308">
-<img src="img/309.png" alt="Image 309">
-<img src="img/310.png" alt="Image 310">
-<img src="img/311.png" alt="Image 311">
-<img src="img/312.png" alt="Image 312">
-<img src="img/313.png" alt="Image 313">
-<img src="img/314.png" alt="Image 314">
-<img src="img/315.png" alt="Image 315">
-<img src="img/316.png" alt="Image 316">
-<img src="img/317.png" alt="Image 317">
-<img src="img/318.png" alt="Image 318">
-<img src="img/319.png" alt="Image 319">
-<img src="img/320.png" alt="Image 320">
-<img src="img/321.png" alt="Image 321">
-<img src="img/322.png" alt="Image 322">
-<img src="img/323.png" alt="Image 323">
-<img src="img/324.png" alt="Image 324">
-<img src="img/325.png" alt="Image 325">
-<img src="img/326.png" alt="Image 326">
-<img src="img/327.png" alt="Image 327">
-<img src="img/328.png" alt="Image 328">
-<img src="img/329.png" alt="Image 329">
-<img src="img/330.png" alt="Image 330">
-<img src="img/331.png" alt="Image 331">
-<img src="img/332.png" alt="Image 332">
-<img src="img/333.png" alt="Image 333">
-<img src="img/334.png" alt="Image 334">
-<img src="img/335.png" alt="Image 335">
-<img src="img/336.png" alt="Image 336">
-<img src="img/337.png" alt="Image 337">
-<img src="img/338.png" alt="Image 338">
-<img src="img/339.png" alt="Image 339">
-<img src="img/340.png" alt="Image 340">
-<img src="img/341.png" alt="Image 341">
-<img src="img/342.png" alt="Image 342">
-<img src="img/343.png" alt="Image 343">
-<img src="img/344.png" alt="Image 344">
-<img src="img/345.png" alt="Image 345">
-<img src="img/346.png" alt="Image 346">
-<img src="img/347.png" alt="Image 347">
-<img src="img/348.png" alt="Image 348">
-<img src="img/349.png" alt="Image 349">
-<img src="img/350.png" alt="Image 350">
-<img src="img/351.png" alt="Image 351">
-<img src="img/352.png" alt="Image 352">
-<img src="img/353.png" alt="Image 353">
-<img src="img/354.png" alt="Image 354">
-<img src="img/355.png" alt="Image 355">
-<img src="img/356.png" alt="Image 356">
-<img src="img/357.png" alt="Image 357">
-<img src="img/358.png" alt="Image 358">
-<img src="img/359.png" alt="Image 359">
-<img src="img/360.png" alt="Image 360">
-<img src="img/361.png" alt="Image 361">
-<img src="img/362.png" alt="Image 362">
-<img src="img/363.png" alt="Image 363">
-<img src="img/364.png" alt="Image 364">
-<img src="img/365.png" alt="Image 365">
-<img src="img/366.png" alt="Image 366">
-<img src="img/367.png" alt="Image 367">
-<img src="img/368.png" alt="Image 368">
-<img src="img/369.png" alt="Image 369">
-<img src="img/370.png" alt="Image 370">
-<img src="img/371.png" alt="Image 371">
-<img src="img/372.png" alt="Image 372">
-<img src="img/373.png" alt="Image 373">
-<img src="img/374.png" alt="Image 374">
-<img src="img/375.png" alt="Image 375">
-<img src="img/376.png" alt="Image 376">
-<img src="img/377.png" alt="Image 377">
-<img src="img/378.png" alt="Image 378">
-<img src="img/379.png" alt="Image 379">
-<img src="img/380.png" alt="Image 380">
-<img src="img/381.png" alt="Image 381">
-<img src="img/382.png" alt="Image 382">
-<img src="img/383.png" alt="Image 383">
-<img src="img/384.png" alt="Image 384">
-<img src="img/385.png" alt="Image 385">
-<img src="img/386.png" alt="Image 386">
-<img src="img/387.png" alt="Image 387">
-<img src="img/388.png" alt="Image 388">
-<img src="img/389.png" alt="Image 389">
-<img src="img/390.png" alt="Image 390">
-<img src="img/391.png" alt="Image 391">
-<img src="img/392.png" alt="Image 392">
-<img src="img/393.png" alt="Image 393">
-<img src="img/394.png" alt="Image 394">
-<img src="img/395.png" alt="Image 395">
-<img src="img/396.png" alt="Image 396">
-<img src="img/397.png" alt="Image 397">
-<img src="img/398.png" alt="Image 398">
-<img src="img/399.png" alt="Image 399">
-<img src="img/400.png" alt="Image 400">
-<img src="img/401.png" alt="Image 401">
-<img src="img/402.png" alt="Image 402">
-<img src="img/403.png" alt="Image 403">
-<img src="img/404.png" alt="Image 404">
-<img src="img/405.png" alt="Image 405">
-<img src="img/406.png" alt="Image 406">
-<img src="img/407.png" alt="Image 407">
-<img src="img/408.png" alt="Image 408">
-<img src="img/409.png" alt="Image 409">
-<img src="img/410.png" alt="Image 410">
-<img src="img/411.png" alt="Image 411">
-<img src="img/412.png" alt="Image 412">
-<img src="img/413.png" alt="Image 413">
-<img src="img/414.png" alt="Image 414">
-<img src="img/415.png" alt="Image 415">
-<img src="img/416.png" alt="Image 416">
-<img src="img/417.png" alt="Image 417">
-<img src="img/418.png" alt="Image 418">
-<img src="img/419.png" alt="Image 419">
-<img src="img/420.png" alt="Image 420">
-<img src="img/421.png" alt="Image 421">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </figure>
+    <h1>Client Reviews</h1>
+    <div class="grid">
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
+    <script>
+        let currentImage = 300;
+        const totalImages = 421;  // Total number of images
+
+        function loadMoreImages() {
+            for (let i = 0; i < 12; i++) {  // Load 12 images at a time
+                if (currentImage <= totalImages) {
+                    const columnIndex = currentImage % 4;
+                    $('.column').eq(columnIndex).append(`<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="img/${currentImage}" data-index="${currentImage}" alt="Client Review ${currentImage}" class="lazy">`);
+                    currentImage++;
+                }
+            }
+            lazyLoad();
+        }
+
+        function lazyLoad() {
+            const lazyImages = document.querySelectorAll('img.lazy');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const image = entry.target;
+                        loadImage(image, 'png').catch(() => loadImage(image, 'jpg'));
+                        image.classList.remove('lazy');
+                        imageObserver.unobserve(image);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }
+
+        function loadImage(img, extension) {
+            return new Promise((resolve, reject) => {
+                const index = img.dataset.index;
+                img.src = `img/${index}.${extension}`;
+                img.onload = resolve;
+                img.onerror = reject;
+            });
+        }
+
+        $(document).ready(function() {
+            loadMoreImages();
+
+            $(window).scroll(function() {
+                if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                    loadMoreImages();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
