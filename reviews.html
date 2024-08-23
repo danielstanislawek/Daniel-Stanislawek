@@ -18,31 +18,28 @@
         .grid {
             display: flex;
             flex-wrap: wrap;
-            padding: 0 4px;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px; /* Increased from 800px */
+            margin: 0 auto;
+            padding: 0 20px;
         }
         .column {
-            flex: 25%;
-            max-width: 25%;
-            padding: 0 4px;
+            flex: 1 0 100%;
+            max-width: 100%;
         }
         .column img {
-            margin-top: 8px;
-            vertical-align: middle;
             width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
             background-color: #ddd;
             border-radius: 4px;
-            transition: opacity 0.3s;
         }
-        @media screen and (max-width: 800px) {
+        @media screen and (min-width: 768px) {
             .column {
-                flex: 50%;
-                max-width: 50%;
-            }
-        }
-        @media screen and (max-width: 600px) {
-            .column {
-                flex: 100%;
-                max-width: 100%;
+                flex: 0 0 calc(50% - 10px);
+                max-width: calc(50% - 10px);
             }
         }
     </style>
@@ -52,21 +49,17 @@
     <div class="grid">
         <div class="column"></div>
         <div class="column"></div>
-        <div class="column"></div>
-        <div class="column"></div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
     <script>
-        let currentImage = 300;
-        const totalImages = 421;  // Total number of images
+        let currentImage = 299;
+        const totalImages = 422;
 
         function loadMoreImages() {
-            for (let i = 0; i < 12; i++) {  // Load 12 images at a time
+            for (let i = 0; i < 8; i++) {
                 if (currentImage <= totalImages) {
-                    const columnIndex = currentImage % 4;
+                    const columnIndex = currentImage % 2;
                     $('.column').eq(columnIndex).append(`<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="img/${currentImage}" data-index="${currentImage}" alt="Client Review ${currentImage}" class="lazy">`);
                     currentImage++;
                 }
