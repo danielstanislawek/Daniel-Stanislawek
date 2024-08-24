@@ -3,110 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniel Stanislawek, guitar</title>
+    <title>Contact Daniel Stanislawek</title>
     <style>
-        .video-item {
-            display: inline; /* Keep the title inline */
-            margin-right: 5px; /* Space between title and artist */
-            color: blue;
-            text-decoration: underline;
-            cursor: pointer;
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        .song-entry {
-            display: block; /* Each song entry on a new line */
-            margin-bottom: 5px; /* Space between different songs */
+        h1 {
+            color: #2c3e50;
         }
- #video-popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
+        form {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
             width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
-        #video-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        #close-popup {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: white;
-            font-size: 24px;
+        input[type="submit"] {
+            background: #2c3e50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background: #34495e;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <h1>Daniel Stanislawek, guitar</h1>
+    <h1>Contact Daniel Stanislawek</h1>
+    <p>Please use the form below to get in touch. I'll get back to you as soon as possible.</p>
+    
+    <form action="https://api.staticforms.xyz/submit" method="post">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
 
-    <h2>
-dstanislawek@gmail.com</h2>
-    <div id="video-list">
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+        <label for="message">Your Message:</label>
+        <textarea id="message" name="message" rows="5" placeholder="Type your message here" required></textarea>
+
+        <input type="text" name="honeypot" style="display:none">
+        <input type="hidden" name="accessKey" value="ba29115e-a717-4f23-8e99-e33b6c3a70f7">
+        <input type="hidden" name="subject" value="New contact form submission">
+        <input type="hidden" name="replyTo" value="@">
+        <input type="hidden" name="redirectTo" value="https://danielstanislawek.com/thank-you">
         
- 
-       
+        <input type="submit" value="Send Message">
+    </form>
 
-
-
-    <div id="video-popup">
-        <div id="video-container"></div>
-        <span id="close-popup">&times;</span>
-    </div>
-
-
-
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const videoItems = document.querySelectorAll('.video-item');
-  const videoPopup = document.getElementById('video-popup');
-  const videoContainer = document.getElementById('video-container');
-  const closePopup = document.getElementById('close-popup');
-
-  videoItems.forEach(item => {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      const videoId = this.getAttribute('data-video-id');
-      openVideoPopup(videoId);
-    });
-  });
-
-  closePopup.addEventListener('click', closeVideoPopup);
-
-  function openVideoPopup(videoId) {
-    const iframe = document.createElement('iframe');
-    iframe.width = '560';
-    iframe.height = '315';
-    iframe.src = `https://www.youtube.com/embed/${videoId}`;
-    iframe.frameBorder = '0';
-    iframe.allow = 'autoplay; encrypted-media';
-    iframe.allowFullscreen = true;
-
-    videoContainer.innerHTML = '';
-    videoContainer.appendChild(iframe);
-    videoPopup.style.display = 'block';
-  }
-
-  function closeVideoPopup() {
-    videoPopup.style.display = 'none';
-    videoContainer.innerHTML = '';
-  }
-
-  // Event listener for closing on overlay click
-  videoPopup.addEventListener('click', function(event) {
-    if (event.target === videoPopup) {
-      closeVideoPopup();
-    }
-  });
-});
-</script>
-<h2><a href="index.html">main</a></h2>
-<h2><a href="wedding.html">wedding</a></h2>
-<h2><a href="christmas.html">Christmas</a></h2>
-<h2><a href="about.html">about</a></h2>
+    <a href="index.html" class="back-link">← Back to Main Page</a>
 </body>
-</html>
