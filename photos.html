@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gig Photos</title>
+    <style>
+        /* Your existing CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Gig Photos</h1>
+    <div class="grid">
+        <div class="column"></div>
+        <div class="column"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const imageFolder = 'img2/';
+        let currentImage = 1;
+        let loadedAll = false;
+
+        function loadMoreImages() {
+            for (let i = 0; i < 8; i++) {
+                if (!loadedAll) {
+                    const columnIndex = (currentImage - 1) % 2;
+                    const imgSrc = `${imageFolder}${currentImage}.jpg`;
+                    
+                    $('<img>')
+                        .on('load', function() {
+                            $('.column').eq(columnIndex).append(this);
+                        })
+                        .on('error', function() {
+                            // Try PNG if JPG fails
+                            $(this).attr('src', imgSrc.replace('.jpg', '.png'))
+                                .on('error', function() {
+                                    loadedAll = true;
+                                });
+                        })
+                        .attr('src', imgSrc)
+                        .attr('alt', `Gig Photo ${currentImage}`);
+
+                    currentImage++;
+                }
+            }
+        }
+
+        $(document).ready(function() {
+            loadMoreImages();
+
+            $(window).scroll(function() {
+                if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                    loadMoreImages();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
