@@ -2,31 +2,66 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-C2R1NSWGRS');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-C2R1NSWGRS');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="NC guitarist special events Charlotte, Raleigh, Greensboro, Durham, Winston-Salem, High Point. classical pop rock Latin jazz film show. A site for potential clients to hear what I do.">
     <title>Daniel Stanislawek, guitar</title>
+    <!-- Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            background-color: #fafafa;
+            color: #333;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            color: #006666;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #006666;
+            border-bottom: 2px solid #006666;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
         .video-item {
-            display: inline; /* Keep the title inline */
-            margin-right: 5px; /* Space between title and artist */
-            color: blue;
-            text-decoration: underline;
+            display: inline;
+            margin-right: 5px;
+            color: #006666;
+            text-decoration: none;
             cursor: pointer;
         }
-        .song-entry {
-            display: block; /* Each song entry on a new line */
-            margin-bottom: 5px; /* Space between different songs */
+        .video-item:hover {
+            text-decoration: underline;
+            color: #004d4d;
         }
- #video-popup {
+        .song-entry {
+            display: block;
+            margin-bottom: 10px;
+        }
+        #video-list {
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        #video-popup {
             display: none;
             position: fixed;
             top: 0;
@@ -40,14 +75,35 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
         }
         #close-popup {
             position: absolute;
             top: 10px;
             right: 10px;
-            color: white;
-            font-size: 24px;
+            color: #fff;
+            font-size: 30px;
+            background-color: rgba(0,0,0,0.7);
+            padding: 5px 10px;
+            border-radius: 50%;
             cursor: pointer;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+        nav h2 {
+            margin: 0;
+        }
+        nav a {
+            color: #006666;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -71,7 +127,7 @@
         <div class="song-entry"><a href="#" class="video-item" data-video-id="qyVQbRFAlV8">When I’m Sixty Four</a> (Beatles)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="bCS0PybxsA8">Love Me Do</a> (Beatles)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="aPDFnKUTD3A">Thinking Out Loud</a> (Ed Sheeran)</div>
-        <div class="song-entry"><a href="#" class="video-item" data-video-id="nqVOic_J">Is This Love</a> (Bob Marley)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="nqVOic_J-NM">Is This Love</a> (Bob Marley)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="L7PiIMELBH0">Saving All My Love for You</a> (Masser/Goffin)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="1iU7wcKu6TI">Life’s Been Good</a> (Joe Walsh)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="RxXfr3MKooI">Ain’t Nobody</a> (Chaka Khan)</div>
@@ -94,7 +150,8 @@
         <div class="song-entry"><a href="#" class="video-item" data-video-id="9KQgqRp_XXY">Man In The Mirror</a> (Michael Jackson)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="w1jZfoonZ9Y">Love Me Like You Do</a> (Ellie Goulding)</div>
     </div>
-<h2>Spanish/Latin</h2>
+
+    <h2>Spanish/Latin</h2>
     <div id="video-list">
         <div class="song-entry"><a href="#" class="video-item" data-video-id="yokyzoSipmI">Recuerdos de la Alhambra</a> (Francesco Tarrega)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="xzvMP4b8rls">Danza Brasilera</a> (Jorge Morel)</div>
@@ -153,95 +210,100 @@
         <div class="song-entry"><a href="#" class="video-item" data-video-id="Yfx-1XMW1vY">The Good, the Bad and the Ugly</a></div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="CRTKBeQco6U">Cavatina</a> (The Deer Hunter)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="XLWW5do0KP4">A Whole New World</a> (Aladdin)</div>
-        <div class="song-entry"><a href="#" class="video-item" data-video-id="pW5gdfBWiVc">Over the Rainbow</a> (The Wizard of Oz)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="pW5mOch0H0Q">Over the Rainbow</a> (The Wizard of Oz)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="0z-N1jf51VE">If I Only Had A Brain</a></div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="fGSFWqlk3r8">Ding Dong The Witch Is Dead</a></div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="1HcKWIbvh5g">The Big Lebowski</a></div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="yhMQ8aAMixE">Part of Your World</a> (The Little Mermaid)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="gjXgHutkDvA">Eternal Sunshine For The Spotless Mind</a></div>
-        <div class="song-entry"><a href="#" class="video-item" data-video-id="PIRaXinHgYg">Pure Imagination</a>(Willy Wonka)</div>
-        <div class="song-entry"><a href="#" class="video-item" data-video-id="WgJFgWWLRWY">Love Theme & Waltz</a>(The Godfather)</div>
-        <div class="song-entry"><a href="#" class="video-item" data-video-id="pJ5mOch0H0Q">Michael’s Theme</a>(The Godfather)</div>
-        <div class="song-entry"><a href="#" class="video-item" data-video-id="HS3U5PgeXnQ">Downtown</a>(Petula Clark)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="MYIbWAZbFtU">Everything I Do I Do It for You</a></div>
-        <div class="song-entry"><a href="#" class="video-item" data-video-id="xxIXap0pDE4">Friend Like Me</a>(Aladdin)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="A8mK4z9ruAc">Fly Me to the Moon</a>(Bart Howard)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="PIRaXinHgYg">Pure Imagination</a> (Willy Wonka)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="WgJFgWWLRWY">Love Theme & Waltz</a> (The Godfather)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="pJ5mOch0H0Q">Michael’s Theme</a> (The Godfather)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="HS3U5PgeXnQ">Downtown</a> (Petula Clark)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="MYIbWAZbFtU">Everything I Do I Do It for You</a></div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="xxIXap0pDE4">Friend Like Me</a> (Aladdin)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="A8mK4z9ruAc">Fly Me to the Moon</a> (Bart Howard)</div>
+    </div>
+
+    <h2>classical, etc</h2>
+    <div id="video-list">
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="pF-rU_Hln9M">Una Limosna por el Amor de Dios</a> (Agustin Barrios)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="W5SmoGV1qsA">Wild Mountain Thyme</a> (Irish trad)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="UdO_QkhWOh0">Sheebeg,Sheemore</a> (Celtic)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="sZj94pp5CCM">Prelude 1006a</a> (JS Bach)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="wtmQXjtgfsU">Loure 1006a</a> (JS Bach)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="k5Jxq9335aQ">Gavotte en Rondeau 1006a</a> (JS Bach)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="_zeqzC6HQ0E">Minuets 1006a</a> (JS Bach)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="bz6tuI_sknw">Bouree 1006a</a> (JS Bach)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="IuZ5Sd3NyqM">The Earl of Essex's Galliard</a> (John Dowland)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="q_zFcXpedWw">Gigue 1006a</a> (JS Bach)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="pmgNFKKah0w">Bagatelle #2</a> (Walton)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="h3fgKUm9OTE">Danza Paraguaya No.1</a> (Agustin Barrios)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="yokyzoSipmI">Recuerdos de la Alhambra</a> (Francesco Tarrega)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="bkgBXnln2rQ">Asturias</a> (Isaac Albéniz)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="tzSB7YSPvmw">Mallorca</a> (Isaac Albéniz)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="A5ZCqFR1Y5g">Alla Cubana</a> (Walton)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="nb5xFXfFHgk">Andaluza, Spanish Dance no 5</a> (Granados)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="j08aY7qHd0I">Equinox</a> (Takemitsu)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="PBw8R27zj8I">Gigolo</a> (John Anthony Lennon)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="3OItksz7BF0">Serenata</a> (John Anthony Lennon)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="93kR1oP7xfo">Thirteen</a> (John Anthony Lennon)</div>
+    </div>
+
     <div id="video-popup">
         <div id="video-container"></div>
         <span id="close-popup">&times;</span>
     </div>
-<h2>classical, etc</h2>
-    <div id="video-list">
-<div class="song-entry"><a href="#" class="video-item" data-video-id="pF-rU_Hln9M">Una Limosna por el Amor de Dios</a>(Agustin Barrios)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="W5SmoGV1qsA">Wild Mountain Thyme</a>(Irish trad)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="UdO_QkhWOh0">Sheebeg,Sheemore</a>(Celtic)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="sZj94pp5CCM">Prelude 1006a</a>(JS Bach)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="wtmQXjtgfsU">Loure 1006a</a>(JS Bach)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="k5Jxq9335aQ">Gavotte en Rondeau 1006a</a>(JS Bach)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="_zeqzC6HQ0E">Minuets 1006a</a>(JS Bach)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="bz6tuI_sknw">Bouree 1006a</a>(JS Bach)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="IuZ5Sd3NyqM">The Earl of Essex's Galliard</a>(John Dowland)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="q_zFcXpedWw">Gigue 1006a</a>(JS Bach)</div>     
-<div class="song-entry"><a href="#" class="video-item" data-video-id="pmgNFKKah0w">Bagatelle #2</a>(Walton)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="h3fgKUm9OTE">Danza Paraguaya No.1</a>(Agustin Barrios)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="yokyzoSipmI">Recuerdos de la Alhambra</a>(Francesco Tarrega)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="bkgBXnln2rQ">Asturias</a>(Isaac Albéniz)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="tzSB7YSPvmw">Mallorca</a>(Isaac Albéniz)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="A5ZCqFR1Y5g">Alla Cubana</a>(Walton)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="nb5xFXfFHgk">Andaluza, Spanish Dance no 5</a>(Granados)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="j08aY7qHd0I">Equinox</a>(Takemitsu)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="PBw8R27zj8I">Gigolo</a>(John Anthony Lennon)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="3OItksz7BF0">Serenata</a>(John Anthony Lennon)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="93kR1oP7xfo">Thirteen</a>(John Anthony Lennon)</div>
 
+    <nav>
+        <h2><a href="wedding.html">Wedding</a></h2>
+        <h2><a href="christmas.html">Christmas</a></h2>
+        <h2><a href="about.html">About</a></h2>
+        <h2><a href="contact.html">Contact</a></h2>
+    </nav>
 
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const videoItems = document.querySelectorAll('.video-item');
-  const videoPopup = document.getElementById('video-popup');
-  const videoContainer = document.getElementById('video-container');
-  const closePopup = document.getElementById('close-popup');
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoItems = document.querySelectorAll('.video-item');
+            const videoPopup = document.getElementById('video-popup');
+            const videoContainer = document.getElementById('video-container');
+            const closePopup = document.getElementById('close-popup');
 
-  videoItems.forEach(item => {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      const videoId = this.getAttribute('data-video-id');
-      openVideoPopup(videoId);
-    });
-  });
+            videoItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const videoId = this.getAttribute('data-video-id');
+                    openVideoPopup(videoId);
+                });
+            });
 
-  closePopup.addEventListener('click', closeVideoPopup);
+            closePopup.addEventListener('click', closeVideoPopup);
 
-  function openVideoPopup(videoId) {
-    const iframe = document.createElement('iframe');
-    iframe.width = '560';
-    iframe.height = '315';
-    iframe.src = `https://www.youtube.com/embed/${videoId}`;
-    iframe.frameBorder = '0';
-    iframe.allow = 'autoplay; encrypted-media';
-    iframe.allowFullscreen = true;
+            function openVideoPopup(videoId) {
+                const iframe = document.createElement('iframe');
+                iframe.width = '560';
+                iframe.height = '315';
+                iframe.src = `https://www.youtube.com/embed/${videoId}`;
+                iframe.frameBorder = '0';
+                iframe.allow = 'autoplay; encrypted-media';
+                iframe.allowFullscreen = true;
 
-    videoContainer.innerHTML = '';
-    videoContainer.appendChild(iframe);
-    videoPopup.style.display = 'block';
-  }
+                videoContainer.innerHTML = '';
+                videoContainer.appendChild(iframe);
+                videoPopup.style.display = 'block';
+            }
 
-  function closeVideoPopup() {
-    videoPopup.style.display = 'none';
-    videoContainer.innerHTML = '';
-  }
+            function closeVideoPopup() {
+                videoPopup.style.display = 'none';
+                videoContainer.innerHTML = '';
+            }
 
-  // Event listener for closing on overlay click
-  videoPopup.addEventListener('click', function(event) {
-    if (event.target === videoPopup) {
-      closeVideoPopup();
-    }
-  });
-});
-</script>
-<h2><a href="wedding.html">wedding</a></h2>
-<h2><a href="christmas.html">Christmas</a></h2>
-<h2><a href="about.html">about</a></h2>
-<h2><a href="contact.html">contact</a></h2>
+            videoPopup.addEventListener('click', function(event) {
+                if (event.target === videoPopup) {
+                    closeVideoPopup();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
