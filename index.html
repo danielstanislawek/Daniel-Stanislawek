@@ -1,33 +1,81 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-C2R1NSWGRS');
+    </script>
 
-  gtag('config', 'G-C2R1NSWGRS');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="NC guitarist special events Charlotte, Raleigh, Greensboro, Durham, Winston-Salem, High Point. classical pop rock Latin jazz film show. A site for potential clients to hear what I do.">
     <title>Daniel Stanislawek, guitar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet">
+
     <style>
-        .video-item {
-            display: inline; /* Keep the title inline */
-            margin-right: 5px; /* Space between title and artist */
-            color: blue;
-            text-decoration: underline;
-            cursor: pointer;
+        /* General Styles */
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            line-height: 1.6; /* Adds a bit more space between lines */
+            color: #333; /* Slightly softer than pure black */
+            margin: 20px; /* Add some margin around the content */
         }
+
+        /* Heading Styles */
+        h1 {
+            font-size: 2.5em; /* Example size */
+            margin-bottom: 1em;
+            color: #222; /* Darker heading color */
+        }
+        h2 {
+            font-size: 1.8em; /* Example size */
+            margin-top: 1.5em; /* More space above genre headings */
+            margin-bottom: 0.8em;
+            border-bottom: 1px solid #eee; /* Subtle separator */
+            padding-bottom: 0.3em;
+            color: #444;
+        }
+
+        /* Link Styling for Video Items */
+        a.video-item {
+            color: #007bff; /* Link color */
+            text-decoration: none; /* Remove default underline */
+            font-weight: bold; /* Make titles stand out slightly */
+            margin-right: 5px; /* Space between title and artist (from original) */
+            cursor: pointer; /* Keep cursor pointer (from original) */
+            display: inline; /* Keep the title inline (from original) */
+        }
+        a.video-item:hover {
+            text-decoration: underline; /* Add underline on hover */
+            color: #0056b3; /* Slightly darken link on hover */
+        }
+
+        /* Styling for Song Entry Container */
         .song-entry {
             display: block; /* Each song entry on a new line */
-            margin-bottom: 5px; /* Space between different songs */
+            margin-bottom: 8px; /* Increased space between different songs */
         }
- #video-popup {
+
+        /* Styling for Bottom Navigation Links */
+        h2 > a {
+             color: #007bff;
+             text-decoration: none;
+             font-size: 1rem; /* Make nav links slightly smaller than h2 */
+             border-bottom: none; /* Remove border from these links */
+        }
+         h2 > a:hover {
+             text-decoration: underline;
+             color: #0056b3;
+         }
+
+        /* Video Popup Styles (Unchanged from original) */
+        #video-popup {
             display: none;
             position: fixed;
             top: 0;
@@ -35,6 +83,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.8);
+            z-index: 1000; /* Ensure popup is on top */
         }
         #video-container {
             position: absolute;
@@ -44,10 +93,11 @@
         }
         #close-popup {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 15px; /* Adjusted position */
+            right: 25px; /* Adjusted position */
             color: white;
-            font-size: 24px;
+            font-size: 30px; /* Made slightly larger */
+            font-weight: bold;
             cursor: pointer;
         }
     </style>
@@ -56,8 +106,7 @@
     <h1>Daniel Stanislawek, guitar</h1>
 
     <h2>pop/rock</h2>
-    <div id="video-list">
-        <div class="song-entry"><a href="#" class="video-item" data-video-id="rWBuyyW7Qvo">Sgt Pepper's Lonely Hearts Club Band</a> (Beatles)</div>
+    <div id="pop-rock-list"> <div class="song-entry"><a href="#" class="video-item" data-video-id="rWBuyyW7Qvo">Sgt Pepper's Lonely Hearts Club Band</a> (Beatles)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="AmaCO6DVZTY">Sleep Walk</a> (Santo & Johnny)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="4OAkt4pcO8M">My Cherie Amour</a> (Stevie Wonder)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="s3kCY7dp_FQ">I'm Yours</a> (Jason Mraz)</div>
@@ -95,9 +144,9 @@
         <div class="song-entry"><a href="#" class="video-item" data-video-id="9KQgqRp_XXY">Man In The Mirror</a> (Michael Jackson)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="w1jZfoonZ9Y">Love Me Like You Do</a> (Ellie Goulding)</div>
     </div>
-<h2>Spanish/Latin</h2>
-    <div id="video-list">
-        <div class="song-entry"><a href="#" class="video-item" data-video-id="yokyzoSipmI">Recuerdos de la Alhambra</a> (Francesco Tarrega)</div>
+
+    <h2>Spanish/Latin</h2>
+    <div id="spanish-latin-list"> <div class="song-entry"><a href="#" class="video-item" data-video-id="yokyzoSipmI">Recuerdos de la Alhambra</a> (Francesco Tarrega)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="xzvMP4b8rls">Danza Brasilera</a> (Jorge Morel)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="vz8VljCkR1o">La Paloma</a> (Sebastián Yradier)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="a9Zxrfen0mk">Samba do Avião</a> (Antonio Jobim)</div>
@@ -118,8 +167,7 @@
     </div>
 
     <h2>American</h2>
-    <div id="video-list">
-        <div class="song-entry"><a href="#" class="video-item" data-video-id="mINsXzAwBkw">The Entertainer</a> (Scott Joplin)</div>
+    <div id="american-list"> <div class="song-entry"><a href="#" class="video-item" data-video-id="mINsXzAwBkw">The Entertainer</a> (Scott Joplin)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="umAxWf-eQAI">Mood Indigo</a> (Duke Ellington)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="AFwTr6IMnMM">New York, New York</a></div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="hdnjWdhwQNg">Moon River</a> (Henry Mancini)</div>
@@ -146,8 +194,7 @@
     </div>
 
     <h2>film/show</h2>
-    <div id="video-list">
-        <div class="song-entry"><a href="#" class="video-item" data-video-id="epv42S1gmVY">A Million Dreams</a> (The Greatest Showman)</div>
+    <div id="film-show-list"> <div class="song-entry"><a href="#" class="video-item" data-video-id="epv42S1gmVY">A Million Dreams</a> (The Greatest Showman)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="n5nsfZ6ECbQ">Juliet’s Charleston</a> (Nino Rota)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="wsaJK0GCf0U">One</a> (A Chorus Line)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="0rY74F5l5qA">Till There Was You</a> (Meredith Willson/Beatles)</div>
@@ -164,85 +211,102 @@
         <div class="song-entry"><a href="#" class="video-item" data-video-id="WgJFgWWLRWY">Love Theme & Waltz</a>(The Godfather)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="pJ5mOch0H0Q">Michael’s Theme</a>(The Godfather)</div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="HS3U5PgeXnQ">Downtown</a>(Petula Clark)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="MYIbWAZbFtU">Everything I Do I Do It for You</a></div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="MYIbWAZbFtU">Everything I Do I Do It for You</a></div>
         <div class="song-entry"><a href="#" class="video-item" data-video-id="xxIXap0pDE4">Friend Like Me</a>(Aladdin)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="A8mK4z9ruAc">Fly Me to the Moon</a>(Bart Howard)</div>
-    <div id="video-popup">
-        <div id="video-container"></div>
-        <span id="close-popup">&times;</span>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="A8mK4z9ruAc">Fly Me to the Moon</a>(Bart Howard)</div>
     </div>
-<h2>classical, etc</h2>
-    <div id="video-list">
-<div class="song-entry"><a href="#" class="video-item" data-video-id="pF-rU_Hln9M">Una Limosna por el Amor de Dios</a>(Agustin Barrios)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="W5SmoGV1qsA">Wild Mountain Thyme</a>(Irish trad)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="UdO_QkhWOh0">Sheebeg,Sheemore</a>(Celtic)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="sZj94pp5CCM">Prelude 1006a</a>(JS Bach)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="wtmQXjtgfsU">Loure 1006a</a>(JS Bach)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="k5Jxq9335aQ">Gavotte en Rondeau 1006a</a>(JS Bach)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="_zeqzC6HQ0E">Minuets 1006a</a>(JS Bach)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="bz6tuI_sknw">Bouree 1006a</a>(JS Bach)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="IuZ5Sd3NyqM">The Earl of Essex's Galliard</a>(John Dowland)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="q_zFcXpedWw">Gigue 1006a</a>(JS Bach)</div>     
-<div class="song-entry"><a href="#" class="video-item" data-video-id="pmgNFKKah0w">Bagatelle #2</a>(Walton)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="h3fgKUm9OTE">Danza Paraguaya No.1</a>(Agustin Barrios)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="yokyzoSipmI">Recuerdos de la Alhambra</a>(Francesco Tarrega)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="bkgBXnln2rQ">Asturias</a>(Isaac Albéniz)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="tzSB7YSPvmw">Mallorca</a>(Isaac Albéniz)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="A5ZCqFR1Y5g">Alla Cubana</a>(Walton)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="nb5xFXfFHgk">Andaluza, Spanish Dance no 5</a>(Granados)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="j08aY7qHd0I">Equinox</a>(Takemitsu)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="PBw8R27zj8I">Gigolo</a>(John Anthony Lennon)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="3OItksz7BF0">Serenata</a>(John Anthony Lennon)</div>
-<div class="song-entry"><a href="#" class="video-item" data-video-id="93kR1oP7xfo">Thirteen</a>(John Anthony Lennon)</div>
+
+     <div id="video-popup">
+        <div id="video-container"></div>
+        <span id="close-popup">×</span>
+    </div>
+
+    <h2>classical, etc</h2>
+    <div id="classical-list"> <div class="song-entry"><a href="#" class="video-item" data-video-id="pF-rU_Hln9M">Una Limosna por el Amor de Dios</a>(Agustin Barrios)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="W5SmoGV1qsA">Wild Mountain Thyme</a>(Irish trad)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="UdO_QkhWOh0">Sheebeg,Sheemore</a>(Celtic)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="sZj94pp5CCM">Prelude 1006a</a>(JS Bach)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="wtmQXjtgfsU">Loure 1006a</a>(JS Bach)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="k5Jxq9335aQ">Gavotte en Rondeau 1006a</a>(JS Bach)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="_zeqzC6HQ0E">Minuets 1006a</a>(JS Bach)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="bz6tuI_sknw">Bouree 1006a</a>(JS Bach)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="IuZ5Sd3NyqM">The Earl of Essex's Galliard</a>(John Dowland)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="q_zFcXpedWw">Gigue 1006a</a>(JS Bach)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="pmgNFKKah0w">Bagatelle #2</a>(Walton)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="h3fgKUm9OTE">Danza Paraguaya No.1</a>(Agustin Barrios)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="yokyzoSipmI">Recuerdos de la Alhambra</a>(Francesco Tarrega)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="bkgBXnln2rQ">Asturias</a>(Isaac Albéniz)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="tzSB7YSPvmw">Mallorca</a>(Isaac Albéniz)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="A5ZCqFR1Y5g">Alla Cubana</a>(Walton)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="nb5xFXfFHgk">Andaluza, Spanish Dance no 5</a>(Granados)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="j08aY7qHd0I">Equinox</a>(Takemitsu)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="PBw8R27zj8I">Gigolo</a>(John Anthony Lennon)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="3OItksz7BF0">Serenata</a>(John Anthony Lennon)</div>
+        <div class="song-entry"><a href="#" class="video-item" data-video-id="93kR1oP7xfo">Thirteen</a>(John Anthony Lennon)</div>
+    </div>
 
 
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const videoItems = document.querySelectorAll('.video-item');
-  const videoPopup = document.getElementById('video-popup');
-  const videoContainer = document.getElementById('video-container');
-  const closePopup = document.getElementById('close-popup');
+      document.addEventListener('DOMContentLoaded', function() {
+        const videoItems = document.querySelectorAll('.video-item');
+        const videoPopup = document.getElementById('video-popup');
+        const videoContainer = document.getElementById('video-container');
+        const closePopup = document.getElementById('close-popup');
 
-  videoItems.forEach(item => {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      const videoId = this.getAttribute('data-video-id');
-      openVideoPopup(videoId);
-    });
-  });
+        videoItems.forEach(item => {
+          item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const videoId = this.getAttribute('data-video-id');
+            openVideoPopup(videoId);
+          });
+        });
 
-  closePopup.addEventListener('click', closeVideoPopup);
+        closePopup.addEventListener('click', closeVideoPopup);
 
-  function openVideoPopup(videoId) {
-    const iframe = document.createElement('iframe');
-    iframe.width = '560';
-    iframe.height = '315';
-    iframe.src = `https://www.youtube.com/embed/${videoId}`;
-    iframe.frameBorder = '0';
-    iframe.allow = 'autoplay; encrypted-media';
-    iframe.allowFullscreen = true;
+        function openVideoPopup(videoId) {
+          const iframe = document.createElement('iframe');
+          iframe.width = '560'; // Consider making this responsive later if needed
+          iframe.height = '315';// Consider making this responsive later if needed
+          iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`; // Standard YouTube embed URL with autoplay
+          iframe.setAttribute('frameborder', '0'); // Use setAttribute
+          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'); // Updated allow attributes
+          iframe.setAttribute('allowfullscreen', ''); // Use setAttribute
 
-    videoContainer.innerHTML = '';
-    videoContainer.appendChild(iframe);
-    videoPopup.style.display = 'block';
-  }
+          videoContainer.innerHTML = ''; // Clear previous video
+          videoContainer.appendChild(iframe);
+          videoPopup.style.display = 'block';
+        }
 
-  function closeVideoPopup() {
-    videoPopup.style.display = 'none';
-    videoContainer.innerHTML = '';
-  }
+        function closeVideoPopup() {
+          videoPopup.style.display = 'none';
+          // Remove iframe src to stop video playback when closed
+          const iframe = videoContainer.querySelector('iframe');
+          if (iframe) {
+              iframe.src = '';
+          }
+          videoContainer.innerHTML = ''; // Clear the container
+        }
 
-  // Event listener for closing on overlay click
-  videoPopup.addEventListener('click', function(event) {
-    if (event.target === videoPopup) {
-      closeVideoPopup();
-    }
-  });
-});
-</script>
-<h2><a href="wedding.html">wedding</a></h2>
-<h2><a href="christmas.html">Christmas</a></h2>
-<h2><a href="about.html">about</a></h2>
-<h2><a href="contact.html">contact</a></h2>
+        // Event listener for closing on overlay click (outside the video)
+        videoPopup.addEventListener('click', function(event) {
+          if (event.target === videoPopup) { // Check if the click is on the overlay itself
+            closeVideoPopup();
+          }
+        });
+
+        // Optional: Close popup with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && videoPopup.style.display === 'block') {
+                closeVideoPopup();
+            }
+        });
+      });
+    </script>
+
+    <h2><a href="wedding.html">wedding</a></h2>
+    <h2><a href="christmas.html">Christmas</a></h2>
+    <h2><a href="about.html">about</a></h2>
+    <h2><a href="contact.html">contact</a></h2>
+
 </body>
 </html>
