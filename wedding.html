@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -165,58 +166,58 @@
     </div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const videoItems = document.querySelectorAll('.video-item');
-        const videoPopup = document.getElementById('video-popup');
-        const videoContainer = document.getElementById('video-container');
-        const closePopup = document.getElementById('close-popup');
+  document.addEventListener('DOMContentLoaded', function() {
+    const videoItems = document.querySelectorAll('.video-item');
+    const videoPopup = document.getElementById('video-popup');
+    const videoContainer = document.getElementById('video-container');
+    const closePopup = document.getElementById('close-popup');
 
-        videoItems.forEach(item => {
-          item.addEventListener('click', function(e) {
-            e.preventDefault();
-            const videoId = this.getAttribute('data-video-id');
-            openVideoPopup(videoId);
-          });
-        });
-
-        closePopup.addEventListener('click', closeVideoPopup);
-
-        function openVideoPopup(videoId) {
-          const iframe = document.createElement('iframe');
-          iframe.width = '560';
-          iframe.height = '315';
-          iframe.src = `https://www.youtube.com/embed/VIDEO_ID{videoId}?autoplay=1`;
-          iframe.setAttribute('frameborder', '0');
-          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-          iframe.setAttribute('allowfullscreen', '');
-
-          videoContainer.innerHTML = '';
-          videoContainer.appendChild(iframe);
-          videoPopup.style.display = 'block';
-        }
-
-        function closeVideoPopup() {
-          videoPopup.style.display = 'none';
-          const iframe = videoContainer.querySelector('iframe');
-          if (iframe) {
-              iframe.src = '';
-          }
-          videoContainer.innerHTML = '';
-        }
-
-        videoPopup.addEventListener('click', function(event) {
-          if (event.target === videoPopup) {
-            closeVideoPopup();
-          }
-        });
-
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && videoPopup.style.display === 'block') {
-                closeVideoPopup();
-            }
-        });
+    videoItems.forEach(item => {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        const videoId = this.getAttribute('data-video-id');
+        openVideoPopup(videoId);
       });
-    </script>
+    });
+
+    closePopup.addEventListener('click', closeVideoPopup);
+
+    function openVideoPopup(videoId) {
+      const iframe = document.createElement('iframe');
+      iframe.width = '560';
+      iframe.height = '315';
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+
+      videoContainer.innerHTML = '';
+      videoContainer.appendChild(iframe);
+      videoPopup.style.display = 'block';
+    }
+
+    function closeVideoPopup() {
+      videoPopup.style.display = 'none';
+      const iframe = videoContainer.querySelector('iframe');
+      if (iframe) {
+          iframe.src = '';
+      }
+      videoContainer.innerHTML = '';
+    }
+
+    videoPopup.addEventListener('click', function(event) {
+      if (event.target === videoPopup) {
+        closeVideoPopup();
+      }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && videoPopup.style.display === 'block') {
+            closeVideoPopup();
+        }
+    });
+  });
+</script>
 
     <h2><a href="index.html">main</a></h2>
     <h2><a href="christmas.html">Christmas</a></h2>
