@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-C2R1NSWGRS');
-    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-C2R1NSWGRS');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviews</title>
@@ -28,7 +29,7 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            max-width: 1200px;
+            max-width: 1200px; /* Increased from 800px */
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -59,32 +60,36 @@
         <div class="column"></div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></ headless>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        const startImage = 296;
+        let currentImage = 296;
         const totalImages = 423;
 
-        function loadImages() {
-            const promises = [];
-            // Load images from highest to lowest number
-            for (let i = totalImages; i >= startImage; i--) {
-                const columnIndex = i % 2;
-                const $img = $(`<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-index="${i}" alt="Client Review ${i}">`);
-                $('.column').eq(columnIndex).append($img);
-                
-                // Create promise to load image (try PNG first, then JPG)
-                const promise = loadImage($img[0], 'png').catch(() => loadImage($img[0], 'jpg'));
-                promises.push(promise);
+        function loadMoreImages() {
+            for (let i = 0; i < 8; i++) {
+                if (currentImage <= totalImages) {
+                    const columnIndex = currentImage % 2;
+                    $('.column').eq(columnIndex).append(`<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="img/${currentImage}" data-index="${currentImage}" alt="Client Review ${currentImage}" class="lazy">`);
+                    currentImage++;
+                }
             }
-            
-            // Log errors for debugging
-            Promise.allSettled(promises).then(results => {
-                results.forEach((result, index) => {
-                    if (result.status === 'rejected') {
-                        console.error(`Failed to load image ${totalImages - index}: ${result.reason}`);
+            lazyLoad();
+        }
+
+        function lazyLoad() {
+            const lazyImages = document.querySelectorAll('img.lazy');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const image = entry.target;
+                        loadImage(image, 'png').catch(() => loadImage(image, 'jpg'));
+                        image.classList.remove('lazy');
+                        imageObserver.unobserve(image);
                     }
                 });
             });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
         }
 
         function loadImage(img, extension) {
@@ -97,7 +102,13 @@
         }
 
         $(document).ready(function() {
-            loadImages();
+            loadMoreImages();
+
+            $(window).scroll(function() {
+                if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                    loadMoreImages();
+                }
+            });
         });
     </script>
 </body>
