@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -18,96 +19,97 @@
             margin: 0;
             padding: 20px;
             background-color: #f0f0f0;
-            display: flex; /* Use flexbox for centering */
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center items horizontally */
-            justify-content: center; /* Center items vertically */
-            min-height: 100vh; /* Make body at least viewport height */
         }
         h1 {
             text-align: center;
             color: #333;
-            margin-bottom: 20px; /* Add some space below the heading */
         }
-        .review-container {
-            max-width: 800px; /* Set a max width for the review */
-            width: 100%; /* Make the container responsive */
-            text-align: center; /* Center the image within the container */
-            margin-bottom: 20px; /* Add space below the image */
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px; /* Increased from 800px */
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .review-container img {
-            width: 100%; /* Make the image fill the container width */
+        .column {
+            flex: 1 0 100%;
+            max-width: 100%;
+        }
+        .column img {
+            width: 100%;
             height: auto;
             display: block;
-            margin: 0 auto; /* Center the image */
+            margin-bottom: 20px;
             background-color: #ddd;
             border-radius: 4px;
         }
-        .navigation-buttons {
-            text-align: center;
-        }
-        .navigation-buttons button {
-            padding: 10px 20px;
-            margin: 0 10px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-        }
-        .navigation-buttons button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
+        @media screen and (min-width: 768px) {
+            .column {
+                flex: 0 0 calc(50% - 10px);
+                max-width: calc(50% - 10px);
+            }
         }
     </style>
 </head>
 <body>
     <h1>Client Reviews</h1>
-    <div class="review-container">
-        <img id="reviewImage" src="img/421.png" alt="Client Review">
-    </div>
-    <div class="navigation-buttons">
-        <button id="prevBtn">Previous</button>
-        <button id="nextBtn">Next</button>
+    <div class="grid">
+        <div class="column"></div>
+        <div class="column"></div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        const reviewImage = document.getElementById('reviewImage');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
+        let currentImage = 296;
+        const totalImages = 423;
 
-        let currentImageIndex = 421; // Start with the highest number
-        const minImageIndex = 296;
-        const maxImageIndex = 421;
-
-        function updateImage() {
-            reviewImage.src = `img/${currentImageIndex}.png`; // Assuming all are .png based on your previous code
-            // You might want to add error handling here in case an image is missing
-
-            // Enable/disable buttons based on the current index
-            prevBtn.disabled = (currentImageIndex === maxImageIndex); // Disable 'Previous' at the start
-            nextBtn.disabled = (currentImageIndex === minImageIndex); // Disable 'Next' at the end
+        function loadMoreImages() {
+            for (let i = 0; i < 8; i++) {
+                if (currentImage <= totalImages) {
+                    const columnIndex = currentImage % 2;
+                    $('.column').eq(columnIndex).append(`<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="img/${currentImage}" data-index="${currentImage}" alt="Client Review ${currentImage}" class="lazy">`);
+                    currentImage++;
+                }
+            }
+            lazyLoad();
         }
 
-        // Event listeners for buttons
-        nextBtn.addEventListener('click', () => {
-            if (currentImageIndex > minImageIndex) {
-                currentImageIndex--; // Decrement to go from 421 down to 296
-                updateImage();
-            }
+        function lazyLoad() {
+            const lazyImages = document.querySelectorAll('img.lazy');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const image = entry.target;
+                        loadImage(image, 'png').catch(() => loadImage(image, 'jpg'));
+                        image.classList.remove('lazy');
+                        imageObserver.unobserve(image);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }
+
+        function loadImage(img, extension) {
+            return new Promise((resolve, reject) => {
+                const index = img.dataset.index;
+                img.src = `img/${index}.${extension}`;
+                img.onload = resolve;
+                img.onerror = reject;
+            });
+        }
+
+        $(document).ready(function() {
+            loadMoreImages();
+
+            $(window).scroll(function() {
+                if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                    loadMoreImages();
+                }
+            });
         });
-
-        prevBtn.addEventListener('click', () => {
-            if (currentImageIndex < maxImageIndex) {
-                currentImageIndex++; // Increment to go back up from 296 to 421
-                updateImage();
-            }
-        });
-
-        // Initialize the page with the first image and button states
-        updateImage();
-
     </script>
 </body>
 </html>
