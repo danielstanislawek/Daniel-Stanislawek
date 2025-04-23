@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -19,97 +18,37 @@
             margin: 0;
             padding: 20px;
             background-color: #f0f0f0;
+            display: flex; /* Use flexbox for centering */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+            min-height: 100vh; /* Make body at least viewport height */
         }
         h1 {
             text-align: center;
             color: #333;
+            margin-bottom: 20px; /* Add some space below the heading */
         }
-        .grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            max-width: 1200px; /* Increased from 800px */
-            margin: 0 auto;
-            padding: 0 20px;
+        .review-container {
+            max-width: 800px; /* Set a max width for the review */
+            width: 100%; /* Make the container responsive */
+            text-align: center; /* Center the image within the container */
         }
-        .column {
-            flex: 1 0 100%;
-            max-width: 100%;
-        }
-        .column img {
-            width: 100%;
+        .review-container img {
+            width: 100%; /* Make the image fill the container width */
             height: auto;
             display: block;
-            margin-bottom: 20px;
+            margin: 0 auto; /* Center the image */
             background-color: #ddd;
             border-radius: 4px;
-        }
-        @media screen and (min-width: 768px) {
-            .column {
-                flex: 0 0 calc(50% - 10px);
-                max-width: calc(50% - 10px);
-            }
         }
     </style>
 </head>
 <body>
     <h1>Client Reviews</h1>
-    <div class="grid">
-        <div class="column"></div>
-        <div class="column"></div>
+    <div class="review-container">
+        <img src="img/421.png" alt="Client Review 421">
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        let currentImage = 296;
-        const totalImages = 423;
-
-        function loadMoreImages() {
-            for (let i = 0; i < 8; i++) {
-                if (currentImage <= totalImages) {
-                    const columnIndex = currentImage % 2;
-                    $('.column').eq(columnIndex).append(`<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="img/${currentImage}" data-index="${currentImage}" alt="Client Review ${currentImage}" class="lazy">`);
-                    currentImage++;
-                }
-            }
-            lazyLoad();
-        }
-
-        function lazyLoad() {
-            const lazyImages = document.querySelectorAll('img.lazy');
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const image = entry.target;
-                        loadImage(image, 'png').catch(() => loadImage(image, 'jpg'));
-                        image.classList.remove('lazy');
-                        imageObserver.unobserve(image);
-                    }
-                });
-            });
-
-            lazyImages.forEach(img => imageObserver.observe(img));
-        }
-
-        function loadImage(img, extension) {
-            return new Promise((resolve, reject) => {
-                const index = img.dataset.index;
-                img.src = `img/${index}.${extension}`;
-                img.onload = resolve;
-                img.onerror = reject;
-            });
-        }
-
-        $(document).ready(function() {
-            loadMoreImages();
-
-            $(window).scroll(function() {
-                if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-                    loadMoreImages();
-                }
-            });
-        });
-    </script>
-</body>
+    </body>
 </html>
