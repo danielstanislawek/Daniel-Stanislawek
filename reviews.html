@@ -33,6 +33,7 @@
             max-width: 800px; /* Set a max width for the review */
             width: 100%; /* Make the container responsive */
             text-align: center; /* Center the image within the container */
+            margin-bottom: 20px; /* Add space below the image */
         }
         .review-container img {
             width: 100%; /* Make the image fill the container width */
@@ -42,13 +43,71 @@
             background-color: #ddd;
             border-radius: 4px;
         }
+        .navigation-buttons {
+            text-align: center;
+        }
+        .navigation-buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+        }
+        .navigation-buttons button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
     <h1>Client Reviews</h1>
     <div class="review-container">
-        <img src="img/421.png" alt="Client Review 421">
+        <img id="reviewImage" src="img/421.png" alt="Client Review">
+    </div>
+    <div class="navigation-buttons">
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
     </div>
 
-    </body>
+    <script>
+        const reviewImage = document.getElementById('reviewImage');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentImageIndex = 421; // Start with the highest number
+        const minImageIndex = 296;
+        const maxImageIndex = 421;
+
+        function updateImage() {
+            reviewImage.src = `img/${currentImageIndex}.png`; // Assuming all are .png based on your previous code
+            // You might want to add error handling here in case an image is missing
+
+            // Enable/disable buttons based on the current index
+            prevBtn.disabled = (currentImageIndex === maxImageIndex); // Disable 'Previous' at the start
+            nextBtn.disabled = (currentImageIndex === minImageIndex); // Disable 'Next' at the end
+        }
+
+        // Event listeners for buttons
+        nextBtn.addEventListener('click', () => {
+            if (currentImageIndex > minImageIndex) {
+                currentImageIndex--; // Decrement to go from 421 down to 296
+                updateImage();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentImageIndex < maxImageIndex) {
+                currentImageIndex++; // Increment to go back up from 296 to 421
+                updateImage();
+            }
+        });
+
+        // Initialize the page with the first image and button states
+        updateImage();
+
+    </script>
+</body>
 </html>
