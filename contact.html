@@ -26,10 +26,13 @@
         h1 {
             color: #2c3e50;
         }
+        /* The form-related styles below are kept for consistency in case you reintroduce a form,
+           but they won't apply to the direct email display. */
         form {
             background: #f4f4f4;
             padding: 20px;
             border-radius: 8px;
+            /* display: none; will hide if you want to keep the form HTML but not show it */
         }
         label {
             display: block;
@@ -64,33 +67,39 @@
         .back-link:hover {
             text-decoration: underline;
         }
+        .email-contact-box {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center; /* Center the email link */
+            margin-top: 20px;
+        }
+        .email-contact-box p {
+            margin-bottom: 15px;
+        }
+        .email-contact-box a {
+            display: inline-block;
+            background: #2c3e50;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .email-contact-box a:hover {
+            background: #34495e;
+        }
     </style>
 
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-</head>
+    </head>
 <body>
     <h1>Contact Daniel Stanislawek</h1>
-    <p>Please use the form below to get in touch. I'll get back to you as soon as possible.</p>
+    <p>Please use this email to get in touch. I'll get back to you as soon as possible.</p>
 
-    <form action="https://api.staticforms.xyz/submit" method="post">
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" placeholder="Your Name" required>
-
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" placeholder="Your Email" required>
-
-        <label for="message">Your Message:</label>
-        <textarea id="message" name="message" rows="5" placeholder="Type your message here" required></textarea>
-
-        <div class="g-recaptcha" data-sitekey="YOUR_ACTUAL_RECAPTCHA_V2_SITE_KEY_GOES_HERE"></div>
-
-        <input type="text" name="honeypot" style="display:none">
-        <input type="hidden" name="accessKey" value="ba29115e-a717-4f23-8e99-e33b6c3a70f7">
-        <input type="hidden" name="subject" value="New contact form submission">
-        <input type="hidden" name="redirectTo" value="https://danielstanislawek.com/thank-you">
-
-        <input type="submit" value="Send Message">
-    </form>
+    <div class="email-contact-box">
+        <p>You can reach me directly at:</p>
+        <p><a href="mailto:dstanislawek@duck.com">dstanislawek@duck.com</a></p>
+    </div>
 
     <a href="index.html" class="back-link">← Back to Main Page</a>
 </body>
