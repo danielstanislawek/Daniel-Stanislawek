@@ -1,60 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    let currentImage = 293;        // lowest review number
+    const lastImage = 421;         // <-- only update this when you add a new review
 
-  gtag('config', 'G-C2R1NSWGRS');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviews</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            max-width: 1200px; /* Increased from 800px */
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .column {
-            flex: 1 0 100%;
-            max-width: 100%;
-        }
-        .column img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin-bottom: 20px;
-            background-color: #ddd;
-            border-radius: 4px;
-        }
-        @media screen and (min-width: 768px) {
-            .column {
-                flex: 0 0 calc(50% - 10px);
-                max-width: calc(50% - 10px);
+    function loadMoreImages() {
+        for (let i = 0; i < 8; i++) {
+            if (currentImage <= lastImage) {
+                const columnIndex = currentImage % 2;
+                $('.column').eq(columnIndex).append(`
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" 
+                         data-index="${currentImage}" 
+                         alt="Client Review ${currentImage}" 
+                         class="lazy">`
+                );
+                currentImage++;
             }
         }
-    </style>
-</head>
-<body>
-    <h1>Client Reviews</h1>
+        lazyLoad();
+    }
+
+    function lazyLoad() {
+        const lazyImages = document.querySelectorAll('img.lazy');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const image = entry.target;
+                    loadImage(image, 'png').catch(() => loadImage(image, 'jpg'));
+                    image.classList.remove('lazy');
+                    observer.unobserve(image);
+                }
+            });
+        });
+
+        lazyImages.forEach(img => imageObserver.observe(img));
+    }
+
+    function loadImage(img, extension) {
+        return new Promise((resolve, reject) => {
+            const index = img.dataset.index;
+            img.src = `img/${index}.${extension}`;
+            img.onload = resolve;
+            img.onerror = reject;
+        });
+    }
+
+    $(document).ready(function() {
+        loadMoreImages();
+
+        $(window).scroll(function() {
+            if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                loadMoreImages();
+            }
+        });
+    });
+</script>
     <div class="grid">
         <div class="column"></div>
         <div class="column"></div>
