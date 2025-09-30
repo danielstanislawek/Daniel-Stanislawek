@@ -1,128 +1,115 @@
-<!-- keep your jQuery include -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Add this small CSS tweak (optional but prevents layout jump) -->
-<style>
-  .column img {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 20px;
-    background-color: #ddd;
-    border-radius: 4px;
-    min-height: 120px;       /* prevents layout jump / "disappearing" look */
-    object-fit: contain;
-  }
-  .img-missing {
-    opacity: 0.6;
-    filter: grayscale(1);
-  }
-</style>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
 <script>
-  // Configuration: only change lastImage when you add new screenshots
-  let currentImage = 293;         // lowest review number
-  const lastImage = 421;          // <-- update this single number
-  const BATCH = 8;                // how many to append per load
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  // extensions to try, in order
-  const EXTENSIONS = ['png', 'jpg', 'jpeg', 'webp'];
-
-  // IntersectionObserver (created once)
-  const observerOptions = { root: null, rootMargin: '200px', threshold: 0.01 };
-  const imageObserver = new IntersectionObserver(onIntersect, observerOptions);
-
-  function loadMoreImages() {
-    for (let i = 0; i < BATCH && currentImage <= lastImage; i++, currentImage++) {
-      const columnIndex = currentImage % 2; // alternate columns
-      const $img = $(`
-        <img
-          src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
-          data-index="${currentImage}"
-          alt="Client Review ${currentImage}"
-          class="lazy"
-        />
-      `);
-      $('.column').eq(columnIndex).append($img);
-      // Observe the DOM element for lazy loading
-      const domImg = $img.get(0);
-      imageObserver.observe(domImg);
-    }
-  }
-
-  function onIntersect(entries) {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const imgEl = entry.target;
-      // stop observing immediately so we don't try twice
-      imageObserver.unobserve(imgEl);
-      // attempt to load the real image
-      attemptLoad(imgEl).then(found => {
-        // remove lazy class whether found or not
-        imgEl.classList.remove('lazy');
-        if (!found) {
-          // mark missing visually (keeps placeholder instead of broken icon)
-          imgEl.classList.add('img-missing');
-          imgEl.alt = (imgEl.alt || '') + ' (image not found)';
-          // leave the placeholder gif so nothing "disappears"
-        }
-      });
-    });
-  }
-
-  // Try extensions in order. resolves true if loaded, false if none found.
-  function attemptLoad(imgEl) {
-    return new Promise((resolve) => {
-      const idx = imgEl.dataset.index;
-      let tryIndex = 0;
-
-      function tryNext() {
-        if (tryIndex >= EXTENSIONS.length) {
-          return resolve(false); // none worked
-        }
-        const ext = EXTENSIONS[tryIndex++];
-        const probe = new Image();
-        let settled = false;
-
-        // safety timeout in case browser doesn't call onerror/onload quickly
-        const timeout = setTimeout(() => {
-          if (settled) return;
-          settled = true;
-          probe.onload = probe.onerror = null;
-          tryNext();
-        }, 4000); // 4s timeout per extension (adjustable)
-
-        probe.onload = () => {
-          if (settled) return;
-          settled = true;
-          clearTimeout(timeout);
-          // commit to the visible <img> only after successful load
-          imgEl.src = `img/${idx}.${ext}`;
-          resolve(true);
-        };
-        probe.onerror = () => {
-          if (settled) return;
-          settled = true;
-          clearTimeout(timeout);
-          tryNext();
-        };
-
-        // start loading the probe
-        probe.src = `img/${idx}.${ext}`;
-      }
-
-      tryNext();
-    });
-  }
-
-  $(document).ready(function() {
-    loadMoreImages();
-
-    // infinite / on-demand loading when near bottom
-    $(window).on('scroll', function() {
-      if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-        loadMoreImages();
-      }
-    });
-  });
+  gtag('config', 'G-C2R1NSWGRS');
 </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px; /* Increased from 800px */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .column {
+            flex: 1 0 100%;
+            max-width: 100%;
+        }
+        .column img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
+            background-color: #ddd;
+            border-radius: 4px;
+        }
+        @media screen and (min-width: 768px) {
+            .column {
+                flex: 0 0 calc(50% - 10px);
+                max-width: calc(50% - 10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Client Reviews</h1>
+    <div class="grid">
+        <div class="column"></div>
+        <div class="column"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let currentImage = 293;
+        const totalImages = 425;
+
+        function loadMoreImages() {
+            for (let i = 0; i < 8; i++) {
+                if (currentImage <= totalImages) {
+                    const columnIndex = currentImage % 2;
+                    $('.column').eq(columnIndex).append(`<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="img/${currentImage}" data-index="${currentImage}" alt="Client Review ${currentImage}" class="lazy">`);
+                    currentImage++;
+                }
+            }
+            lazyLoad();
+        }
+
+        function lazyLoad() {
+            const lazyImages = document.querySelectorAll('img.lazy');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const image = entry.target;
+                        loadImage(image, 'png').catch(() => loadImage(image, 'jpg'));
+                        image.classList.remove('lazy');
+                        imageObserver.unobserve(image);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }
+
+        function loadImage(img, extension) {
+            return new Promise((resolve, reject) => {
+                const index = img.dataset.index;
+                img.src = `img/${index}.${extension}`;
+                img.onload = resolve;
+                img.onerror = reject;
+            });
+        }
+
+        $(document).ready(function() {
+            loadMoreImages();
+
+            $(window).scroll(function() {
+                if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                    loadMoreImages();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
