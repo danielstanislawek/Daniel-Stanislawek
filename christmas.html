@@ -1,52 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C2R1NSWGRS"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-C2R1NSWGRS');
+    gtag('config', 'G-C2R1NSWGRS');
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel Stanislawek, guitar</title>
     <style>
-        .video-item {
-            display: inline; /* Keep the title inline */
-            margin-right: 5px; /* Space between title and artist */
-            color: blue;
-            text-decoration: underline;
-            cursor: pointer;
-        }
+        /*
+        .video-item, #video-popup, #video-container, #close-popup styles
+        are removed or commented out as they are no longer needed for a direct embed.
+        */
+
+        /* Keeping .song-entry for potential future use or consistent spacing */
         .song-entry {
             display: block; /* Each song entry on a new line */
             margin-bottom: 5px; /* Space between different songs */
         }
- #video-popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
+
+        /* Style for the embedded video container for better responsiveness/control (Optional) */
+        .video-embed-container {
+            margin: 20px 0;
+            /* Optional: You can center the video or control its size here */
         }
-        #video-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        #close-popup {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
+
+        .video-embed-container iframe {
+            display: block; /* To help with centering if desired */
+            max-width: 100%; /* Ensures it fits on smaller screens */
         }
     </style>
 </head>
@@ -56,65 +42,25 @@
     <h2>Christmas music</h2>
     <div id="video-list">
         
-       <div class="song-entry"><a href="#" class="video-item" data-video-id="2JZzTBU3NgI">Christmas music </a> excerpts</div>
-       
+        <div class="song-entry">
+            <p>Christmas music excerpts:</p>
+        </div>
 
-
-
-    <div id="video-popup">
-        <div id="video-container"></div>
-        <span id="close-popup">&times;</span>
+        <div class="video-embed-container">
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/2JZzTBU3NgI"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+            ></iframe>
+        </div>
     </div>
-
-
-
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const videoItems = document.querySelectorAll('.video-item');
-  const videoPopup = document.getElementById('video-popup');
-  const videoContainer = document.getElementById('video-container');
-  const closePopup = document.getElementById('close-popup');
-
-  videoItems.forEach(item => {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      const videoId = this.getAttribute('data-video-id');
-      openVideoPopup(videoId);
-    });
-  });
-
-  closePopup.addEventListener('click', closeVideoPopup);
-
-  function openVideoPopup(videoId) {
-    const iframe = document.createElement('iframe');
-    iframe.width = '560';
-    iframe.height = '315';
-    iframe.src = `https://www.youtube.com/embed/${videoId}`;
-    iframe.frameBorder = '0';
-    iframe.allow = 'autoplay; encrypted-media';
-    iframe.allowFullscreen = true;
-
-    videoContainer.innerHTML = '';
-    videoContainer.appendChild(iframe);
-    videoPopup.style.display = 'block';
-  }
-
-  function closeVideoPopup() {
-    videoPopup.style.display = 'none';
-    videoContainer.innerHTML = '';
-  }
-
-  // Event listener for closing on overlay click
-  videoPopup.addEventListener('click', function(event) {
-    if (event.target === videoPopup) {
-      closeVideoPopup();
-    }
-  });
-});
-</script>
-<h2><a href="index.html">main</a></h2>
-<h2><a href="wedding.html">wedding</a></h2>
-<h2><a href="about.html">about</a></h2>
-<h2><a href="contact.html">contact</a></h2>
+    
+    <h2><a href="index.html">main</a></h2>
+    <h2><a href="wedding.html">wedding</a></h2>
+    <h2><a href="about.html">about</a></h2>
+    <h2><a href="contact.html">contact</a></h2>
 </body>
 </html>
