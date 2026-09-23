@@ -30,14 +30,8 @@
   .back-link { display: inline-block; margin-top: 0.75em; font-size: 0.95em; }
 
   .review-row {
-    display: flex;
-    gap: 1.25em;
-    align-items: flex-start;
-    padding: 1.5em 0;
+    padding: 1.75em 0;
     border-bottom: 1px solid var(--border);
-  }
-  .review-photo {
-    flex: 0 0 220px;
   }
   .review-photo img {
     width: 100%;
@@ -47,27 +41,19 @@
     border-radius: 6px;
   }
   .review-text {
-    flex: 1 1 auto;
-    min-width: 0;
+    margin-top: 0.6em;
   }
   .rq {
-    margin: 0 0 0.5em;
-    font-size: 1em;
+    margin: 0 0 0.25em;
+    font-size: 0.82em;
+    color: var(--sub);
+    line-height: 1.4;
   }
   .ra {
     margin: 0;
-    font-size: 0.85em;
+    font-size: 0.78em;
     color: var(--sub);
-  }
-
-  @media (max-width: 560px) {
-    .review-row {
-      flex-direction: column;
-    }
-    .review-photo {
-      flex-basis: auto;
-      width: 100%;
-    }
+    opacity: 0.85;
   }
 </style>
 </head>
