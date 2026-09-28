@@ -1,0 +1,68 @@
+# danielstanislawek.com — robots.txt
+# Goal: maximum visibility in traditional search AND AI answers/citations.
+# Default posture below = ALLOW everything. Nothing is blocked unless
+# you specifically want to opt OUT of an AI company training on your
+# site (see notes) — opting out does NOT remove you from that
+# company's search/citation surface, only their model-training data.
+
+User-agent: *
+Allow: /
+
+# ---- Traditional search (never block these) ----
+User-agent: Googlebot
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+# ---- AI citation / real-time answer crawlers (allow = you can be cited) ----
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+# ---- Training-only crawlers ----
+# These feed AI model training, not real-time citations. Allowed below
+# by default since broader exposure helps a small local business get
+# recognized by name. If you'd rather opt OUT of training specifically
+# (this does NOT affect whether you show up in that company's search/
+# answers — see notes above each), change Allow to Disallow.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+Sitemap: https://danielstanislawek.com/sitemap.xml
