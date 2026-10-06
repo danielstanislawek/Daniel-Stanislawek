@@ -479,6 +479,13 @@
           }
         });
 
+        // Deep link support: ?play=VIDEOID in the URL auto-opens that song's popup
+        const params = new URLSearchParams(window.location.search);
+        const playId = params.get('play');
+        if (playId) {
+          openVideoPopup(playId);
+        }
+
         // Optional: Close popup with Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' && videoPopup.style.display === 'block') {
